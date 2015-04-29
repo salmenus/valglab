@@ -9,7 +9,7 @@ void* doStuff(void* arg)
 	pthread_mutex_lock(&memoryMutex);
 
 	memory++;
-	printf("Doing stuff with memory : %d\n", memory);
+	printf("Memory (after doing some stuff) : %d\n", memory);
 
 	pthread_mutex_unlock(&memoryMutex);
 	return NULL;
@@ -23,9 +23,8 @@ int main (void)
 	pthread_create(&child, NULL, doStuff, NULL);
 
 	pthread_mutex_lock(&memoryMutex);
-	printf("Will increment memory : %d\n", memory);
 	memory++;
-	printf("Incremented memory : %d\n", memory);
+	printf("Memory : %d\n", memory);
 	pthread_mutex_unlock(&memoryMutex);
 
 	pthread_join(child, NULL);
